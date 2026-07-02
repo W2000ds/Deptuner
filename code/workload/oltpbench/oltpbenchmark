@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# 使用 $OLTPBENCH_HOME 环境变量
+java -Xmx8G -cp "$OLTPBENCH_HOME/target/oltpbench-1.0-jar-with-dependencies.jar:$OLTPBENCH_HOME/lib/*" \
+-Dlog4j.configuration=$OLTPBENCH_HOME/log4j.properties \
+com.oltpbenchmark.DBWorkload "$@"

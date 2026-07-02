@@ -1,29 +1,37 @@
-# Core Runtime Only
+# Core Online Tuning Code
 
-这个目录现在只保留项目运行核心，不再包含任何数据整理、统计分析、论文作图代码。
+This folder contains the original project code needed for online tuning and configuration sampling.
 
-## 保留内容
+## Included Modules
 
-- 配置采样
-- `hebo` / `bo` / `tpe`
-- `bestconfig` / `promisetune` / `flash`
-- 最小运行入口
+- `main.py`: command-line entry point for selecting and running a tuner.
+- `tuner/`: online tuning algorithms, including HEBO, BO, TPE, BestConfig, PromiseTune, FLASH, and related samplers.
+- `systems/`: adapters for MySQL, PostgreSQL, HTTPD, Tomcat, and x265.
+- `workload.py` and `workload/`: workload execution controllers and benchmark support code.
+- `dependency/`: dependency-aware rule handling and runtime evidence extraction.
+- `utils/`: parameter parsing, logging, knob normalization, and shared runtime utilities.
+- `lua/` and `wrk/`: workload scripts used by database and web-service experiments.
 
-## 目录
+## Main Algorithms
 
-- `run_core.py`
-  最小入口，只分发上述 6 类调优器
-- `config_sampling.py`
-  独立的配置采样工具，保留随机采样、LHS、DDS
-- `tuner/`
-  6 个调优器源码，以及依赖感知公共基类
-- `utils/`
-  运行这些调优器需要的最小辅助代码快照
+- HEBO: `tuner/hebo_tuner.py`
+- BO: `tuner/bo_tuner.py`
+- TPE: `tuner/tpe_tuner.py`
+- BestConfig: `tuner/bestconfig_tuner.py`
+- PromiseTune: `tuner/promise_tuner.py`
+- FLASH: `tuner/flash_tuner.py`
 
-## 最小运行方式
+## Sampling Code
+
+- Random sampling: `tuner/flash_tuner.py`, `tuner/promise_tuner.py`
+- DDS sampling: `tuner/bestconfig_tuner.py`
+- LHS sampling: `tuner/mf_sampler.py`
+- Optimizer proposal sampling: `tuner/hebo_tuner.py`, `tuner/bo_tuner.py`, `tuner/tpe_tuner.py`
+
+## Example
 
 ```bash
-python Deptuner/code/run_core.py \
+python main.py \
   --config path/to/config.ini \
   --db_host 127.0.0.1 \
   --fidelity_type single_fidelity \
@@ -31,17 +39,4 @@ python Deptuner/code/run_core.py \
   --run 1
 ```
 
-## 支持的方法
-
-- `hebo`
-- `bo`
-- `tpe`
-- `flash`
-- `bestconfig`
-- `promisetune`
-- `promise`
-
-## 说明
-
-- 这里不再保留任何结果汇总、采样后评估数据导出、排名、ablation、表图渲染脚本。
-- `tuner/` 下保留的是源码快照，运行入口 `run_core.py` 直接调用项目里的核心实现。
+Supported systems are MySQL, PostgreSQL, HTTPD, Tomcat, and x265.

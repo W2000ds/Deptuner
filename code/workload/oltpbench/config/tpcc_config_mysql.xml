@@ -1,0 +1,42 @@
+<parameters>
+	
+    
+    <dbtype>mysql</dbtype>
+    <driver>com.mysql.jdbc.Driver</driver>
+    <DBUrl>jdbc:mysql://db_ga_mf:3306/testdb</DBUrl>
+    <username>root</username>
+    <password>12345678</password>
+    <isolation>TRANSACTION_SERIALIZABLE</isolation>
+    
+    
+    <scalefactor>10</scalefactor>
+    
+    
+    <terminals>2</terminals>
+    <works>
+        <work>
+          <time>30</time>
+          <rate>10000</rate>
+          <weights>45,43,4,4,4</weights>
+        </work>
+	</works>
+	
+	  	
+   	<transactiontypes>
+    	<transactiontype>
+    		<name>NewOrder</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Payment</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>OrderStatus</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>Delivery</name>
+    	</transactiontype>
+    	<transactiontype>
+    		<name>StockLevel</name>
+    	</transactiontype>
+   	</transactiontypes>
+</parameters>
