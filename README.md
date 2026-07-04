@@ -1,13 +1,13 @@
-# DepTuner Supplementary Repository
+# Deptune Supplementary Repository
 
-This repository contains the supplementary code, experimental results, and supporting material for DepTuner.
+This repository contains the supplementary code, experimental results, and supporting material for Deptune.
 
-DepTuner is a dependency-aware configuration tuning framework for software systems. The repository includes online tuning code and the per-measurement CSV results used for the paper's research questions.
+Deptune is a dependency-aware configuration tuning framework for software systems. The repository includes online tuning code and the per-measurement CSV results used for the paper's research questions.
 
 ## Repository Layout
 
 ```text
-Deptuner/
+Deptune/
 ├── code/      # Core online tuning implementation
 ├── RQs/       # Processed CSV results organized by research question
 ├── Rawdata/   # Reserved for raw or additional source data
